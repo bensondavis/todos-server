@@ -2,17 +2,17 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { init } from "./src/db/init";
-import addTodo from "./src/controller/addTodo";
-import login from "./src/controller/login";
-import signup from "./src/controller/SignUp";
-import getTodoList from "./src/controller/getTodoList";
+import { init } from "./db/init";
+import addTodo from "./controller/addTodo";
+import login from "./controller/login";
+import signup from "./controller/SignUp";
+import getTodoList from "./controller/getTodoList";
 import {
   updateTodoItem,
   updateTodoCompleted,
   updateAllTodo,
-} from "./src/controller/updateTodo";
-import { deleteTodo, deleteCompleted } from "./src/controller/deleteTodo";
+} from "./controller/updateTodo";
+import { deleteTodo, deleteCompleted } from "./controller/deleteTodo";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();

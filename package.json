@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon --exec babel-node  ./index.js",
-    "build": "babel ./index.js --out-file index-compiled.js",
-    "start": "node ./lib/index-compiled.js"
+    "start:dev": "nodemon --exec babel-node src/index.js",
+    "build": "babel src -d build",
+    "start": "node build/index.js"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "@babel/core": "^7.20.12",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
+    "babel-plugin-module-resolver": "^5.0.0",
     "nodemon": "^2.0.20"
   }
 }
