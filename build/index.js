@@ -11,6 +11,7 @@ var _signup = _interopRequireDefault(require("./controller/signup"));
 var _getTodoList = _interopRequireDefault(require("./controller/getTodoList"));
 var _updateTodo = require("./controller/updateTodo");
 var _deleteTodo = require("./controller/deleteTodo");
+var _AuthenticateToken = _interopRequireDefault(require("./functions/AuthenticateToken"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 if (process.env.NODE_ENV !== "production") {
   _dotenv.default.config();
@@ -25,15 +26,15 @@ app.use(_bodyParser.default.json());
 app.use(_bodyParser.default.urlencoded({
   extended: false
 }));
-app.post("/add-todo", _addTodo.default);
+app.post("/add-todo", _AuthenticateToken.default, _addTodo.default);
 app.post("/signup", _signup.default);
 app.post("/login", _login.default);
-app.post("/get-todo-list", _getTodoList.default);
-app.post("/update-todo-item", _updateTodo.updateTodoItem);
-app.post("/update-todo-completed", _updateTodo.updateTodoCompleted);
-app.post("/delete-todo", _deleteTodo.deleteTodo);
-app.post("/update-all-todo", _updateTodo.updateAllTodo);
-app.post("/delete-completed", _deleteTodo.deleteCompleted);
+app.post("/get-todo-list", _AuthenticateToken.default, _getTodoList.default);
+app.post("/update-todo-item", _AuthenticateToken.default, _updateTodo.updateTodoItem);
+app.post("/update-todo-completed", _AuthenticateToken.default, _updateTodo.updateTodoCompleted);
+app.post("/delete-todo", _AuthenticateToken.default, _deleteTodo.deleteTodo);
+app.post("/update-all-todo", _AuthenticateToken.default, _updateTodo.updateAllTodo);
+app.post("/delete-completed", _AuthenticateToken.default, _deleteTodo.deleteCompleted);
 app.listen(port, function () {
   console.log(`listening to port: ${port}`);
 });

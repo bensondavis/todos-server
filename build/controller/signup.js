@@ -12,19 +12,8 @@ const signup = async function (req, res) {
   try {
     if (req.body) {
       const verificationResponse = await (0, _VerifyToken.default)(req.body.credential);
-      if (verificationResponse.error) {
-        return res.status(400).json({
-          message: verificationResponse.error
-        });
-      }
+      if (verificationResponse.error) return res.status(400).send(verificationResponse.error);
       const profile = verificationResponse?.payload;
-      console.log({
-        profile
-      });
-      const options = {
-        expiresIn: '1h'
-      };
-      // addUser(profile);
       const existsInDB = await _user.User.find({
         email: profile.email
       });
@@ -36,9 +25,7 @@ const signup = async function (req, res) {
           email: profile.email
         });
       } else {
-        return res.status(409).json({
-          message: "You already signed up"
-        });
+        return res.status(409).send("You already signed up");
       }
       res.status(201).json({
         message: "Signup was successful",
@@ -50,7 +37,7 @@ const signup = async function (req, res) {
           token: _jsonwebtoken.default.sign({
             email: profile.email
           }, process.env.JWT_SECRET, {
-            expiresIn: "1d"
+            expiresIn: process.env.JWT_TOKEN_EXPIRY
           })
         }
       });
