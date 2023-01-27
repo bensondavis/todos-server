@@ -13,6 +13,7 @@ import {
   updateAllTodo,
 } from "./controller/updateTodo";
 import { deleteTodo, deleteCompleted } from "./controller/deleteTodo";
+import AuthenticateToken from "./functions/AuthenticateToken";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
@@ -27,23 +28,23 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/add-todo", addTodo);
+app.post("/add-todo", AuthenticateToken, addTodo);
 
 app.post("/signup", signup);
 
 app.post("/login", login);
 
-app.post("/get-todo-list", getTodoList);
+app.post("/get-todo-list", AuthenticateToken, getTodoList);
 
-app.post("/update-todo-item", updateTodoItem);
+app.post("/update-todo-item", AuthenticateToken, updateTodoItem);
 
-app.post("/update-todo-completed", updateTodoCompleted);
+app.post("/update-todo-completed", AuthenticateToken, updateTodoCompleted);
 
-app.post("/delete-todo", deleteTodo);
+app.post("/delete-todo", AuthenticateToken, deleteTodo);
 
-app.post("/update-all-todo", updateAllTodo);
+app.post("/update-all-todo", AuthenticateToken, updateAllTodo);
 
-app.post("/delete-completed", deleteCompleted);
+app.post("/delete-completed", AuthenticateToken, deleteCompleted);
 
 app.listen(port, () => {
   console.log(`listening to port: ${port}`);
