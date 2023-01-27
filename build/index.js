@@ -7,7 +7,7 @@ var _bodyParser = _interopRequireDefault(require("body-parser"));
 var _init = require("./db/init");
 var _addTodo = _interopRequireDefault(require("./controller/addTodo"));
 var _login = _interopRequireDefault(require("./controller/login"));
-var _SignUp = _interopRequireDefault(require("./controller/SignUp"));
+var _signup = _interopRequireDefault(require("./controller/signup"));
 var _getTodoList = _interopRequireDefault(require("./controller/getTodoList"));
 var _updateTodo = require("./controller/updateTodo");
 var _deleteTodo = require("./controller/deleteTodo");
@@ -26,7 +26,7 @@ app.use(_bodyParser.default.urlencoded({
   extended: false
 }));
 app.post("/add-todo", _addTodo.default);
-app.post("/signup", _SignUp.default);
+app.post("/signup", _signup.default);
 app.post("/login", _login.default);
 app.post("/get-todo-list", _getTodoList.default);
 app.post("/update-todo-item", _updateTodo.updateTodoItem);

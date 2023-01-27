@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import { init } from "./db/init";
 import addTodo from "./controller/addTodo";
 import login from "./controller/login";
-import signup from "./controller/SignUp";
+import signup from "./controller/signup";
 import getTodoList from "./controller/getTodoList";
 import {
   updateTodoItem,
