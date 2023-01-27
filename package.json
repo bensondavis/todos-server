@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon --exec babel-node  ./src/server.js",
-    "start": "babel-node  ./server.js"
+    "start:dev": "nodemon --exec babel-node  ./index.js",
+    "build": "babel ./index.js --out-file index-compiled.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "mongoose": "^6.8.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
